@@ -43,6 +43,7 @@ jobs:
           fi
       - name: Copy bin/libopenslide.dll to lib/openslide.dll
         if: matrix.platform == 'windows-latest'
+        shell: bash
         run: |
           cp openslide-win-x86_64-main/bin/libopenslide.dll openslide-win-x86_64-main/lib/openslide.dll
       - name: Run with Gradle
