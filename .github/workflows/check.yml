@@ -24,6 +24,8 @@ jobs:
         with: 
           repo: alanocallaghan/openslide-winbuild
           workflow: main.yml
+          name: openslide-build-.*
+          name_is_regexp: true
       - name: Unpack
         shell: bash
         run: |
@@ -40,10 +42,6 @@ jobs:
             unzip openslide-build-main/openslide-build-main/openslide-win-x86_64-main.zip
             echo "JNAPATH=$PWD/openslide-win-x86_64-main/lib/" >> $GITHUB_ENV
           fi
-      - name: Sanity check
-        shell: bash
-        run: |
-          echo $(ls -lah $JNAPATH)
       - name: Run with Gradle
         shell: bash
         run: ./gradlew run --args="CMU-1-Small-Region.tiff"
