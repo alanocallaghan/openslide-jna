@@ -41,6 +41,6 @@ jobs:
           fi
       - name: Sanity check
         run: |
-          echo $(ls -lah $JNAPATH)
+          echo $(tree .)
       - name: Run with Gradle
         run: ./gradlew run --args="CMU-1-Small-Region.tiff"
