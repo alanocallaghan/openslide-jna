@@ -1,0 +1,30 @@
+plugins {
+    id 'application'
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.openslide:openslide:3.4.1_2"
+    implementation 'net.java.dev.jna:jna:5.6.0'
+}
+
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    toolchain {
+        // Java 17 gives more useful information than Java 11
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.named("run") {
+    systemProperty "jna.library.path", "/home/alan/Documents/github/imaging/openslide/builddir/src/"
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'openslide.check.TestCLI'
+}
