@@ -41,6 +41,10 @@ jobs:
             unzip openslide-build-main/openslide-build-main/openslide-win-x86_64-main.zip
             echo "JNAPATH=$PWD/openslide-win-x86_64-main/lib/" >> $GITHUB_ENV
           fi
+      - name: Copy bin/libopenslide.dll to lib/openslide.dll
+        if: matrix.platform == 'windows-latest'
+        run: |
+          cp openslide-win-x86_64-main/bin/libopenslide.dll openslide-win-x86_64-main/lib/openslide.dll
       - name: Run with Gradle
         shell: bash
         run: ./gradlew run --args="CMU-1-Small-Region.tiff"
