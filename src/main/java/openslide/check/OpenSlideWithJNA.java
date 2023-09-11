@@ -487,7 +487,7 @@ public final class OpenSlideWithJNA implements Closeable {
         String[] openslide_get_property_names(long osr);
         String openslide_get_property_value(long osr, String name);
         String[] openslide_get_associated_image_names(long osr);
-        void openslide_read_region(long osr, int[] dest, long x, long y, int level, long[] w, long[] h);
+        void openslide_read_region(long osr, int[] dest, long x, long y, int level, long w, long h);
         void openslide_get_associated_image_dimensions(long osr, String name, long[] dim);
         void openslide_read_associated_image(long osr, String name, int[] dest);
         String openslide_get_error(long osr);

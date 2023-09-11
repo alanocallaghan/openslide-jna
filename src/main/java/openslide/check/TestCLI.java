@@ -89,50 +89,5 @@ public class TestCLI {
 
             osr.dispose();
         }
-
-        for (int i = 0; i < nreps; i++) {
-            System.out.printf("Openslide version: %s\n", OpenSlideWithJNA.getLibraryVersion());
-
-            File f = new File(args[0]);
-
-            System.out.printf("openslide_detect_vendor returns %s\n",
-                    OpenSlide.detectVendor(f));
-            System.out.println("New");
-            OpenSlide osr = new OpenSlide(f);
-
-            long w, h;
-
-            osr.dispose();
-
-            System.out.println("New2");
-            osr = new OpenSlideWithJNA(f);
-
-            w = osr.getLevel0Width();
-            h = osr.getLevel0Height();
-            System.out.printf("dimensions: %d x %d\n", w, h);
-            int[] dest = new int[200*200];
-            osr.paintRegionARGB(dest, 0, 0, 0, 200,200);
-
-            int levels = osr.getLevelCount();
-            System.out.printf("num levels: %d\n", levels);
-
-            print_downsamples(osr);
-
-            test_next_biggest(osr, 0.8);
-            test_next_biggest(osr, 1.0);
-            test_next_biggest(osr, 1.5);
-            test_next_biggest(osr, 2.0);
-            test_next_biggest(osr, 3.0);
-            test_next_biggest(osr, 3.1);
-            test_next_biggest(osr, 10);
-            test_next_biggest(osr, 20);
-            test_next_biggest(osr, 25);
-            test_next_biggest(osr, 100);
-            test_next_biggest(osr, 1000);
-            test_next_biggest(osr, 10000);
-
-
-            osr.dispose();
-        }
     }
 }
