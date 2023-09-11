@@ -45,7 +45,7 @@ jobs:
         if: matrix.platform == 'windows-latest'
         shell: bash
         run: |
-          cp openslide-win-x86_64-main/bin/libopenslide.dll openslide-win-x86_64-main/lib/openslide.dll
+          cp openslide-win-x86_64-main/bin/libopenslide-0.dll openslide-win-x86_64-main/lib/openslide.dll
       - name: Run with Gradle
         shell: bash
         run: ./gradlew run --args="CMU-1-Small-Region.tiff"
