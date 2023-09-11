@@ -20,7 +20,7 @@ java {
 }
 
 tasks.named("run") {
-    systemProperty "java.library.path", System.getProperty("JNAPATH")
+    systemProperty "jna.library.path", System.getenv("JNAPATH")
 }
 
 application {

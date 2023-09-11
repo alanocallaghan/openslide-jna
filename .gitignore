@@ -42,4 +42,4 @@ hs_err*.log
 *.swp
 *~.nib
 *thumbs.db
-bin/
+openslide-*
