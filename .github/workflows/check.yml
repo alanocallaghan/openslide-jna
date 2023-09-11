@@ -32,11 +32,14 @@ jobs:
           elif [ "${{matrix.platform}}" == "macos-latest" ]; then
             echo "macos"
             tar -xf openslide-build-main/openslide-build-main/openslide-mac-x86_64-main.tar.gz
-            echo "openslide-build-main/openslide-build-main/openslide-mac-x86_64-main/" >> $GITHUB_ENV
+            echo "JNAPATH=openslide-build-main/openslide-build-main/openslide-mac-x86_64-main/" >> $GITHUB_ENV
           elif [ "${{matrix.platform}}" == "windows-latest" ]; then
             echo "win"
             unzip openslide-build-main/openslide-build-main/openslide-win-x86_64-main.zip
-            echo "openslide-build-main/openslide-build-main/openslide-win-x86_64-main/" >> $GITHUB_ENV
+            echo "JNAPATH=openslide-build-main/openslide-build-main/openslide-win-x86_64-main/" >> $GITHUB_ENV
           fi
+      - name: Sanity check
+        run: |
+          echo $(ls -lah $JNAPATH)
       - name: Run with Gradle
         run: ./gradlew run --args="CMU-1-Small-Region.tiff"
