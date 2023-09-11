@@ -44,4 +44,5 @@ jobs:
         run: |
           echo $(tree .)
       - name: Run with Gradle
+        shell: bash
         run: ./gradlew run --args="CMU-1-Small-Region.tiff"
