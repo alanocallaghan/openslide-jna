@@ -23,5 +23,17 @@ jobs:
         with: 
           repo: alanocallaghan/openslide-winbuild
           workflow: main.yml
+      - name: Unpack
+        run: |
+          if [ ${{matrix.platform}} == 'ubuntu-latest' ]; then
+            tar -xf openslide-build-main/openslide-build-main/openslide-linux-x86_64-main.tar.gz
+            export JNAPATH="openslide-build-main/openslide-build-main/openslide-linux-x86_64-main/"
+          elif [ ${{matrix.platform}} == 'macos-latest' ]; then
+            tar -xf openslide-build-main/openslide-build-main/openslide-mac-x86_64-main.tar.gz
+            export JNAPATH="openslide-build-main/openslide-build-main/openslide-mac-x86_64-main/"
+          elif [ ${{matrix.platform}} == 'windows-latest' ]; then
+            unzip openslide-build-main/openslide-build-main/openslide-win-x86_64-main.zip
+            export JNAPATH="openslide-build-main/openslide-build-main/openslide-win-x86_64-main/"
+          fi
       - name: Run with Gradle
         run: ./gradlew run --args="CMU-1-Small-Region.tiff"
