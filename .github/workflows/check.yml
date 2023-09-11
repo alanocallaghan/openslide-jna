@@ -43,7 +43,7 @@ jobs:
       - name: Sanity check
         shell: bash
         run: |
-          echo $(tree .)
+          echo $(ls -lah $JNAPATH)
       - name: Run with Gradle
         shell: bash
         run: ./gradlew run --args="CMU-1-Small-Region.tiff"
