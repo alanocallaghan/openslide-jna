@@ -20,7 +20,7 @@ java {
 }
 
 tasks.named("run") {
-    systemProperty "jna.library.path", System.getProperty("JNAPATH")
+    systemProperty "jna.library.path", "openslide-build-main/openslide-linux-x86_64-main/lib/"
 }
 
 application {

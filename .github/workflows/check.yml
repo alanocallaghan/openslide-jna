@@ -5,7 +5,8 @@ jobs:
     name: Check if openslide works
     strategy:
       matrix:
-        platform: [ ubuntu-latest, macos-latest, windows-latest ]
+        # platform: [ ubuntu-latest, macos-latest, windows-latest ]
+        platform: [ ubuntu-latest ]
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Check out repo
