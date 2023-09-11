@@ -30,15 +30,15 @@ jobs:
           if [ "${{matrix.platform}}" == "ubuntu-latest" ]; then
             echo "ubuntu"
             tar -xf openslide-build-main/openslide-build-main/openslide-linux-x86_64-main.tar.gz
-            echo "JNAPATH=openslide-build-main/openslide-build-main/openslide-linux-x86_64-main/lib/" >> $GITHUB_ENV
+            echo "JNAPATH=$PWD/openslide-build-main/openslide-build-main/openslide-linux-x86_64-main/lib/" >> $GITHUB_ENV
           elif [ "${{matrix.platform}}" == "macos-latest" ]; then
             echo "macos"
             tar -xf openslide-build-main/openslide-build-main/openslide-mac-x86_64-main.tar.gz
-            echo "JNAPATH=openslide-build-main/openslide-build-main/openslide-mac-x86_64-main/lib/" >> $GITHUB_ENV
+            echo "JNAPATH=$PWD/openslide-build-main/openslide-build-main/openslide-mac-x86_64-main/lib/" >> $GITHUB_ENV
           elif [ "${{matrix.platform}}" == "windows-latest" ]; then
             echo "win"
             unzip openslide-build-main/openslide-build-main/openslide-win-x86_64-main.zip
-            echo "JNAPATH=openslide-build-main/openslide-build-main/openslide-win-x86_64-main/lib/" >> $GITHUB_ENV
+            echo "JNAPATH=$PWD/openslide-build-main/openslide-build-main/openslide-win-x86_64-main/lib/" >> $GITHUB_ENV
           fi
       - name: Sanity check
         shell: bash
