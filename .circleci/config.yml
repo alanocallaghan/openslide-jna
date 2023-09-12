@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run: wget https://nightly.link/alanocallaghan/openslide-cross-builds/actions/runs/6163791899/openslide-natives.zip
       - run: unzip openslide-natives.zip
-      - run: brew install openjdk@17
+      - run: brew install openjdk@17 webp
       - run: ./gradlew run --args="CMU-1-Small-Region.tiff"
 
 workflows:
