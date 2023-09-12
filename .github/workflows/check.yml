@@ -21,7 +21,7 @@ jobs:
         id: download-artifact
         uses: dawidd6/action-download-artifact@v2
         with:
-          repo: alanocallaghan/openslide-jar-builder
+          repo: alanocallaghan/openslide-winbuild
           workflow: build.yml
           name: openslide-natives
       - name: Run with Gradle
