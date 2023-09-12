@@ -6,10 +6,9 @@ jobs:
       xcode: "14.2.0"
     steps:
       - checkout
-      - run: wget https://output.circle-artifacts.com/output/job/ab41f305-04e6-41c0-ac16-651ff6bb19a9/artifacts/0/openslide-mac-arm64-main.tar.gz
-      - run: tar -xvf openslide-mac-arm64-main.tar.gz
+      - run: wget https://nightly.link/alanocallaghan/openslide-cross-builds/actions/runs/6163791899/openslide-natives.zip
+      - run: unzip openslide-natives.zip
       - run: brew install openjdk@17
-      - run: echo 'export JNAPATH=$PWD/openslide-mac-arm64-main/lib/' >> "$BASH_ENV"
       - run: ./gradlew run --args="CMU-1-Small-Region.tiff"
 
 workflows:
@@ -17,4 +16,3 @@ workflows:
   build:
     jobs:
       - build
-
