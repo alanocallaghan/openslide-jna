@@ -6,8 +6,8 @@ jobs:
       xcode: "14.2.0"
     steps:
       - checkout
-      - run: wget https://output.circle-artifacts.com/output/job/54700e47-8891-44db-af5e-554830f9c0c8/artifacts/0/openslide-mac-arm64-main.tar.gz
-      - run: tar -xf openslide-mac-arm64-main.tar.gz
+      - run: wget https://output.circle-artifacts.com/output/job/ab41f305-04e6-41c0-ac16-651ff6bb19a9/artifacts/0/openslide-mac-arm64-main.tar.gz
+      - run: tar -xvf openslide-mac-arm64-main.tar.gz
       - run: brew install openjdk@17
       - run: echo 'export JNAPATH=$PWD/openslide-mac-arm64-main/lib/' >> "$BASH_ENV"
       - run: ./gradlew run --args="CMU-1-Small-Region.tiff"
