@@ -39,56 +39,50 @@ public class TestCLI {
     }
 
     public static void main(String[] args) throws IOException {
-        int nreps = 100;
-        for (int i = 0; i < nreps; i++) {
-            System.out.printf("Openslide version: %s\n", OpenSlideWithJNA.getLibraryVersion());
+        System.out.printf("Openslide version: %s\n", OpenSlideWithJNA.getLibraryVersion());
 
-            if (args.length != 1) {
-                System.out.printf("give file!\n");
-                return;
-            }
-
-            File f = new File(args[0]);
-
-            System.out.printf("openslide_detect_vendor returns %s\n",
-                    OpenSlideWithJNA.detectVendor(f));
-            System.out.println("New");
-            OpenSlideWithJNA osr = new OpenSlideWithJNA(f);
-
-            long w, h;
-
-
-            osr.dispose();
-
-            System.out.println("New2");
-            osr = new OpenSlideWithJNA(f);
-
-            w = osr.getLevel0Width();
-            h = osr.getLevel0Height();
-            System.out.printf("dimensions: %d x %d\n", w, h);
-            int[] dest = new int[200*200];
-            osr.paintRegionARGB(dest, 0, 0, 0, 200,200);
-
-            int levels = osr.getLevelCount();
-            System.out.printf("num levels: %d\n", levels);
-
-            print_downsamples(osr);
-
-            test_next_biggest(osr, 0.8);
-            test_next_biggest(osr, 1.0);
-            test_next_biggest(osr, 1.5);
-            test_next_biggest(osr, 2.0);
-            test_next_biggest(osr, 3.0);
-            test_next_biggest(osr, 3.1);
-            test_next_biggest(osr, 10);
-            test_next_biggest(osr, 20);
-            test_next_biggest(osr, 25);
-            test_next_biggest(osr, 100);
-            test_next_biggest(osr, 1000);
-            test_next_biggest(osr, 10000);
-
-
-            osr.dispose();
+        if (args.length != 1) {
+            System.out.printf("give file!\n");
+            return;
         }
+
+        File f = new File(args[0]);
+
+        System.out.printf("openslide_detect_vendor returns %s\n",
+                OpenSlideWithJNA.detectVendor(f));
+        OpenSlideWithJNA osr = new OpenSlideWithJNA(f);
+
+        long w, h;
+
+
+        osr.dispose();
+
+        osr = new OpenSlideWithJNA(f);
+
+        w = osr.getLevel0Width();
+        h = osr.getLevel0Height();
+        System.out.printf("dimensions: %d x %d\n", w, h);
+        int[] dest = new int[200*200];
+        osr.paintRegionARGB(dest, 0, 0, 0, 200,200);
+
+        int levels = osr.getLevelCount();
+        System.out.printf("num levels: %d\n", levels);
+
+        print_downsamples(osr);
+
+        test_next_biggest(osr, 0.8);
+        test_next_biggest(osr, 1.0);
+        test_next_biggest(osr, 1.5);
+        test_next_biggest(osr, 2.0);
+        test_next_biggest(osr, 3.0);
+        test_next_biggest(osr, 3.1);
+        test_next_biggest(osr, 10);
+        test_next_biggest(osr, 20);
+        test_next_biggest(osr, 25);
+        test_next_biggest(osr, 100);
+        test_next_biggest(osr, 1000);
+        test_next_biggest(osr, 10000);
+
+        osr.dispose();
     }
 }
