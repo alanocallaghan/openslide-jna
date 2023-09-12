@@ -20,29 +20,10 @@ jobs:
       - name: Download artifact
         id: download-artifact
         uses: dawidd6/action-download-artifact@v2
-        with: 
-          repo: alanocallaghan/openslide-winbuild
+        with:
+          repo: alanocallaghan/openslide-jar-builder
           workflow: main.yml
-          name: openslide-build-.*
-          name_is_regexp: true
-      - name: Unpack
-        shell: bash
-        run: |
-          if [ "${{matrix.platform}}" == "ubuntu-latest" ]; then
-            tar -xvf openslide-build-main/openslide-build-main/openslide-linux-x86_64-main.tar.gz
-            echo "JNAPATH=$PWD/openslide-linux-x86_64-main/lib/" >> $GITHUB_ENV
-          elif [ "${{matrix.platform}}" == "macos-latest" ]; then
-            tar -xvf openslide-build-main/openslide-build-main/openslide-mac-x86_64-main.tar.gz
-            echo "JNAPATH=$PWD/openslide-mac-x86_64-main/lib/" >> $GITHUB_ENV
-          elif [ "${{matrix.platform}}" == "windows-latest" ]; then
-            unzip openslide-build-main/openslide-build-main/openslide-win-x86_64-main.zip
-            echo "JNAPATH=$PWD/openslide-win-x86_64-main/lib/" >> $GITHUB_ENV
-          fi
-      - name: Copy bin/libopenslide.dll to lib/openslide.dll
-        if: matrix.platform == 'windows-latest'
-        shell: bash
-        run: |
-          cp openslide-win-x86_64-main/bin/libopenslide-0.dll openslide-win-x86_64-main/lib/openslide.dll
+          name: openslide-natives
       - name: Run with Gradle
         shell: bash
         run: ./gradlew run --args="CMU-1-Small-Region.tiff"

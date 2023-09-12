@@ -38,7 +38,7 @@ public class TestCLI {
                 level, osr.getLevelDownsample(level));
     }
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
         int nreps = 100;
         for (int i = 0; i < nreps; i++) {
             System.out.printf("Openslide version: %s\n", OpenSlideWithJNA.getLibraryVersion());
@@ -56,6 +56,7 @@ public class TestCLI {
             OpenSlideWithJNA osr = new OpenSlideWithJNA(f);
 
             long w, h;
+
 
             osr.dispose();
 
