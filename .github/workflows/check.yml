@@ -24,6 +24,16 @@ jobs:
           repo: alanocallaghan/openslide-winbuild
           workflow: jar.yml
           name: openslide-natives
+      - name: Set classifier
+        shell: bash
+        run: |
+          if [ ${{matrix.platform}} == 'windows-latest' ]; then
+            export CLASSIFIER=win32-x86-64
+          elif [ ${{matrix.platform}} == 'macos-latest' ]; then
+            export CLASSIFIER=darwin-x86-64
+          else
+            export CLASSIFIER=linux-x86-64
+          fi
       - name: Run with Gradle
         shell: bash
         run: ./gradlew run --args="CMU-1-Small-Region.tiff"
