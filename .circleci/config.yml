@@ -1,11 +1,19 @@
 version: 2.1
-resource_class: macos.m1.medium.gen1
-macos:
-  xcode: "14.2.0"
-steps:
-  - checkout
-  - run: wget https://nightly.link/alanocallaghan/openslide-crossplatform-builds/workflows/jar/main/openslide-natives.zip
-  - run: unzip openslide-natives.zip
-  - run: echo 'export CLASSIFIER="darwin-arm64"' >> $BASH_ENV
-  - run: brew install openjdk@17
-  - run: ./gradlew run --args="CMU-1-Small-Region.tiff"
+jobs:
+  build:
+    resource_class: macos.m1.medium.gen1
+    macos:
+      xcode: "14.2.0"
+    steps:
+      - checkout
+      - run: wget https://nightly.link/alanocallaghan/openslide-crossplatform-builds/workflows/jar/main/openslide-natives.zip
+      - run: unzip openslide-natives.zip
+      - run: echo 'export CLASSIFIER="darwin-arm64"' >> $BASH_ENV
+      - run: brew install openjdk@17
+      - run: ./gradlew run --args="CMU-1-Small-Region.tiff"
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
