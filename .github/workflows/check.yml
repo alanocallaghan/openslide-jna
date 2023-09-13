@@ -21,7 +21,7 @@ jobs:
         id: download-artifact
         uses: dawidd6/action-download-artifact@v2
         with:
-          repo: alanocallaghan/openslide-winbuild
+          repo: alanocallaghan/openslide-crossplatform-builds
           workflow: jar.yml
           name: openslide-natives
       - name: Set classifier
