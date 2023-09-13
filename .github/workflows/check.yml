@@ -27,6 +27,7 @@ jobs:
       - name: Set classifier
         shell: bash
         run: |
+          mv openslide-natives/* ./
           if [ ${{matrix.platform}} == 'windows-latest' ]; then
             echo 'CLASSIFIER=win32-x86-64' >> $GITHUB_ENV
           elif [ ${{matrix.platform}} == 'macos-latest' ]; then
