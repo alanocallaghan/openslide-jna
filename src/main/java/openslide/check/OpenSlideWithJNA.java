@@ -97,7 +97,7 @@ public final class OpenSlideWithJNA implements Closeable {
     final private int hashCodeVal;
 
     public static String detectVendor(File file) {
-        System.out.println("Detect vendor");
+    
         return OpenSlideJNA.INSTANCE.openslide_detect_vendor(file.getPath());
     }
 
@@ -106,7 +106,6 @@ public final class OpenSlideWithJNA implements Closeable {
             throw new FileNotFoundException(file.toString());
         }
 
-        System.out.println("Open");
         osr = OpenSlideJNA.INSTANCE.openslide_open(file.getPath());
 
         if (osr == 0) {
@@ -120,7 +119,6 @@ public final class OpenSlideWithJNA implements Closeable {
             dispose();
             throw e;
         }
-        System.out.println("levelcount");
         // store level count
         levelCount = OpenSlideJNA.INSTANCE.openslide_get_level_count(osr);
 
@@ -131,7 +129,6 @@ public final class OpenSlideWithJNA implements Closeable {
 
         long[] wc = new long[1], hc = new long[1];
         for (int i = 0; i < levelCount; i++) {
-            System.out.println("level " + i);
 //            long w = OpenSlideJNA.INSTANCE.openslide_get_level_width(osr, i);
 //            long h = OpenSlideJNA.INSTANCE.openslide_get_level_height(osr, i);
             OpenSlideJNA.INSTANCE.openslide_get_level_dimensions(osr, i, wc, hc);
@@ -143,7 +140,6 @@ public final class OpenSlideWithJNA implements Closeable {
 
         // properties
         HashMap<String, String> props = new HashMap<String, String>();
-        System.out.println("property names");
         for (String s : OpenSlideJNA.INSTANCE.openslide_get_property_names(osr)) {
             props.put(s, OpenSlideJNA.INSTANCE.openslide_get_property_value(osr, s));
         }
@@ -153,7 +149,6 @@ public final class OpenSlideWithJNA implements Closeable {
         // associated images
         HashMap<String, AssociatedImageJNA> associated =
                 new HashMap<String, AssociatedImageJNA>();
-        System.out.println("Associated images");
         for (String s : OpenSlideJNA.INSTANCE
                 .openslide_get_associated_image_names(osr)) {
             associated.put(s, new AssociatedImageJNA(s, this));
@@ -181,7 +176,6 @@ public final class OpenSlideWithJNA implements Closeable {
 
     // call with the reader lock held, or from the constructor
     private void checkError() throws IOException {
-        System.out.println("Check error");
         String msg = OpenSlideJNA.INSTANCE.openslide_get_error(osr);
 
         if (msg != null) {
@@ -195,7 +189,6 @@ public final class OpenSlideWithJNA implements Closeable {
         wl.lock();
         try {
             if (osr != 0) {
-                System.out.println("CLose");
                 OpenSlideJNA.INSTANCE.openslide_close(osr);
                 osr = 0;
             }
@@ -252,7 +245,6 @@ public final class OpenSlideWithJNA implements Closeable {
         rl.lock();
         try {
             checkDisposed();
-            System.out.println("read region");
             OpenSlideJNA.INSTANCE.openslide_read_region(osr, dest, x, y, level, w, h);
             checkError();
         } finally {
