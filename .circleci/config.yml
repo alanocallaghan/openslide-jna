@@ -6,7 +6,7 @@ jobs:
       xcode: "14.2.0"
     steps:
       - checkout
-      - run: wget https://nightly.link/alanocallaghan/openslide-cross-builds/actions/runs/6170701432/openslide-natives.zip
+      - run: wget https://nightly.link/alanocallaghan/openslide-crossplatform-builds/workflows/jar/main/openslide-natives.zip
       - run: unzip openslide-natives.zip
       - run: brew install openjdk@17
       - run: ./gradlew run --args="CMU-1-Small-Region.tiff"
