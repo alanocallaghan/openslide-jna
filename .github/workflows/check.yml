@@ -28,11 +28,11 @@ jobs:
         shell: bash
         run: |
           if [ ${{matrix.platform}} == 'windows-latest' ]; then
-            export CLASSIFIER=win32-x86-64
+            echo 'CLASSIFIER=win32-x86-64' >> $GITHUB_ENV
           elif [ ${{matrix.platform}} == 'macos-latest' ]; then
-            export CLASSIFIER=darwin-x86-64
+            echo 'CLASSIFIER=darwin-x86-64' >> $GITHUB_ENV
           else
-            export CLASSIFIER=linux-x86-64
+            echo 'CLASSIFIER=linux-x86-64' >> $GITHUB_ENV
           fi
       - name: Run with Gradle
         shell: bash
