@@ -9,7 +9,9 @@ repositories {
 
 dependencies {
     implementation 'net.java.dev.jna:jna:5.13.0'
-    implementation(files("openslide-natives/openslide-natives-" + System.getenv("CLASSIFIER") + ".jar"))
+    def f = "openslide-natives/openslide-natives-" + System.getenv("CLASSIFIER") + ".jar"
+    println f
+    implementation(files(f))
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
