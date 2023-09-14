@@ -23,8 +23,15 @@ package openslide.check;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.annotation.Native;
 
-public class TestCLI {
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class TestCLI extends Application {
     static void print_downsamples(OpenSlideWithJNA osr) {
         for (int level = 0; level < osr.getLevelCount(); level++) {
             System.out.printf("level %d: downsample: %g\n", level, osr
@@ -39,14 +46,22 @@ public class TestCLI {
     }
 
     public static void main(String[] args) throws IOException {
+        launch();
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        System.out.println("here");
         System.out.printf("Openslide version: %s\n", OpenSlideWithJNA.getLibraryVersion());
+        System.out.println("but not here");
 
-        if (args.length != 1) {
-            System.out.printf("give file!\n");
-            return;
-        }
+        // if (args.length != 1) {
+        // System.out.printf("give file!\n");
+        // return;
+        // }
 
-        File f = new File(args[0]);
+        File f = new File("CMU-1-Small-Region.tiff");
+        // File f = new File("");
 
         System.out.printf("openslide_detect_vendor returns %s\n",
                 OpenSlideWithJNA.detectVendor(f));
