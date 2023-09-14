@@ -46,11 +46,6 @@ public class TestCLI extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        launch();
-    }
-
-    @Override
-    public void start(Stage stage) throws Exception {
         System.out.println("here");
         System.out.printf("Openslide version: %s\n", OpenSlideWithJNA.getLibraryVersion());
         System.out.println("but not here");
@@ -99,5 +94,11 @@ public class TestCLI extends Application {
         test_next_biggest(osr, 10000);
 
         osr.dispose();
+//        launch();
+
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
     }
 }
