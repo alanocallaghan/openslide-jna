@@ -13,10 +13,17 @@ repositories {
     mavenCentral()
 }
 
+tasks.named("run") {
+//    systemProperty "jna.debug_load", true
+//    systemProperty "jna.library.path", "/home/alan/Documents/github/imaging/openslide-crossplatform-builds/openslide-linux-x86_64-main/lib/"
+}
+
 dependencies {
     implementation 'net.java.dev.jna:jna:5.13.0'
     implementation(files("openslide-natives-" + System.getenv("CLASSIFIER") + ".jar"))
+//    implementation(files("openslide-natives-linux-x86-64.jar"))
 }
+
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {

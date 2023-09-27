@@ -23,13 +23,17 @@ package openslide.check;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.annotation.Native;
+import java.util.HashMap;
+import java.util.Map;
 
+import com.sun.jna.Native;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import static com.sun.jna.Library.OPTION_CLASSLOADER;
 
 public class TestCLI extends Application {
     static void print_downsamples(OpenSlideWithJNA osr) {
@@ -46,6 +50,8 @@ public class TestCLI extends Application {
     }
 
     public static void main(String[] args) throws IOException {
+
+
         System.out.println("here");
         System.out.printf("Openslide version: %s\n", OpenSlideWithJNA.getLibraryVersion());
         System.out.println("but not here");

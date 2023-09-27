@@ -466,6 +466,12 @@ public final class OpenSlideWithJNA implements Closeable {
     }
 
     public interface OpenSlideJNA extends Library {
+        Map<String, Object> TEST_OPTS = new HashMap<String, Object>() {
+            private static final long serialVersionUID = 1L;    // we're not serializing it
+            {
+                put(OPTION_CLASSLOADER, OpenSlideJNA.class.getClassLoader());
+            }
+        };
         OpenSlideJNA INSTANCE = Native.load("openslide", OpenSlideJNA.class);
 
         String openslide_get_version();

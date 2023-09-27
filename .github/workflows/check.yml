@@ -34,6 +34,11 @@ jobs:
           else
             echo 'CLASSIFIER=linux-x86-64' >> $GITHUB_ENV
           fi
+      - name: Download mrxs
+        shell: bash
+        run: |
+          wget https://openslide.cs.cmu.edu/download/openslide-testdata/Mirax/CMU-1.zip
+          unzip CMU-1.zip
       - name: Run with Gradle
         shell: bash
-        run: ./gradlew run --args="CMU-1-Small-Region.tiff"
+        run: ./gradlew run --args="CMU-1.mrxs"
