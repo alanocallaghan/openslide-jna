@@ -46,13 +46,12 @@ public class TestCLI  {
         System.out.printf("Openslide version: %s\n", OpenSlideWithJNA.getLibraryVersion());
         System.out.println("but not here");
 
-        // if (args.length != 1) {
-        // System.out.printf("give file!\n");
-        // return;
-        // }
+         if (args.length != 1) {
+             System.out.printf("give file!\n");
+             return;
+         }
 
-        File f = new File("CMU-1-Small-Region.tiff");
-        // File f = new File("");
+        File f = new File(args[0]);
 
         System.out.printf("openslide_detect_vendor returns %s\n",
                 OpenSlideWithJNA.detectVendor(f));
