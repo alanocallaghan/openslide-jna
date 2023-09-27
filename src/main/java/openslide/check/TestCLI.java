@@ -23,19 +23,9 @@ package openslide.check;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
-import com.sun.jna.Native;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
-import static com.sun.jna.Library.OPTION_CLASSLOADER;
-
-public class TestCLI extends Application {
+public class TestCLI  {
     static void print_downsamples(OpenSlideWithJNA osr) {
         for (int level = 0; level < osr.getLevelCount(); level++) {
             System.out.printf("level %d: downsample: %g\n", level, osr
@@ -104,7 +94,4 @@ public class TestCLI extends Application {
 
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
-    }
 }
