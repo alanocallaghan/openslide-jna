@@ -10,7 +10,11 @@ jobs:
       - run: unzip openslide-natives.zip
       - run: echo 'export CLASSIFIER="darwin-aarch64"' >> $BASH_ENV
       - run: brew install openjdk@17
-      - run: ./gradlew run --args="CMU-1-Small-Region.tiff"
+      - run: |
+          wget https://openslide.cs.cmu.edu/download/openslide-testdata/Mirax/CMU-1.zip
+          unzip CMU-1.zip
+      - run: ./gradlew run --args="CMU-1.mrxs"
+
 
 workflows:
   version: 2

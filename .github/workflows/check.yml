@@ -35,6 +35,7 @@ jobs:
             echo 'CLASSIFIER=linux-x86-64' >> $GITHUB_ENV
           fi
       - name: Download mrxs
+        if: matrix.platform != 'windows-latest'
         shell: bash
         run: |
           wget https://openslide.cs.cmu.edu/download/openslide-testdata/Mirax/CMU-1.zip
